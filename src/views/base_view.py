@@ -1,6 +1,5 @@
-""
+"""
 Base view class for the Employee Assignment Management System.
-
 This module provides a base class for all views in the application.
 """
 import tkinter as tk

@@ -1,6 +1,5 @@
-""
+"""
 Employee controller for the Employee Assignment Management System.
-
 This module handles all business logic related to employees.
 """
 from typing import Any, Dict, List, Optional, Tuple

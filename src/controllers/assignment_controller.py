@@ -1,6 +1,5 @@
-""
+"""
 Assignment controller for the Employee Assignment Management System.
-
 This module handles all business logic related to employee assignments.
 """
 from datetime import date, datetime

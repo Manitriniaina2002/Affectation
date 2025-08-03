@@ -1,6 +1,5 @@
-""
+"""
 Location controller for the Employee Assignment Management System.
-
 This module handles all business logic related to locations.
 """
 from typing import Any, Dict, List, Optional, Tuple
@@ -21,14 +20,31 @@ class LocationController(BaseController):
         Returns:
             List of Location objects
         """
+        print("DEBUG: LocationController.get_all() called")
         province = kwargs.get('province')
         
         if province:
+            print(f"DEBUG: Filtering by province: {province}")
             return Location.get_by_province(self.db, province)
         
         cursor = self.db.conn.cursor()
+        print("DEBUG: Executing SQL: SELECT * FROM LIEU ORDER BY province, design")
         cursor.execute("SELECT * FROM LIEU ORDER BY province, design")
-        return [Location.from_row(row) for row in cursor.fetchall()]
+        rows = cursor.fetchall()
+        print(f"DEBUG: Retrieved {len(rows)} rows from database")
+        
+        locations = []
+        for i, row in enumerate(rows[:3]):  # Print first 3 rows for debugging
+            print(f"DEBUG: Row {i+1}: {row}")
+            location = Location.from_row(row)
+            print(f"DEBUG: Created Location object: id={location.idlieu}, design={location.design}, province={location.province}")
+            locations.append(location)
+        
+        # Add remaining rows without debug output
+        locations.extend(Location.from_row(row) for row in rows[3:])
+        
+        print(f"DEBUG: Returning {len(locations)} locations")
+        return locations
     
     def get_by_id(self, location_id: str) -> Optional[Location]:
         """Get a location by ID.

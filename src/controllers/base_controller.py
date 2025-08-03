@@ -1,6 +1,5 @@
-""
+"""
 Base controller class for the Employee Assignment Management System.
-
 This module provides a base class for all controllers in the application.
 """
 from typing import Any, Dict, List, Optional, Tuple, Type, TypeVar, Union
@@ -98,8 +97,8 @@ class BaseController(ABC):
         missing_fields = [field for field in required_fields if field not in data or not data[field]]
         
         if missing_fields:
-            return False, f"Missing required fields: {', '.join(missing_fields)}
-""
+            return False, f"Missing required fields: {', '.join(missing_fields)}"
+        
         return True, ""
     
     def _get_next_id(self, prefix: str, existing_ids: List[str]) -> str:
